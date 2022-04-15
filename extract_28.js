@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 const fs = require('fs')
 const log = console.log
 const txt = fs.readFileSync('./1.html')
