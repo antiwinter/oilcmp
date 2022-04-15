@@ -8845,59 +8845,59 @@
     "date": "2021-04-28"
   },
   "1991749": {
-    "203": {
+    "1003": {
       "amount": 0,
       "name": "Protein",
       "unit": "G"
     },
-    "204": {
+    "1004": {
       "amount": 93.33,
       "name": "Total lipid (fat)",
       "unit": "G"
     },
-    "205": {
+    "1005": {
       "amount": 0,
       "name": "Carbohydrate, by difference",
       "unit": "G"
     },
-    "208": {
+    "1008": {
       "amount": 867,
       "name": "Energy",
       "unit": "KCAL"
     },
-    "269": {
-      "amount": 0,
-      "name": "Sugars, total including NLEA",
-      "unit": "G"
-    },
-    "291": {
+    "1079": {
       "amount": 0,
       "name": "Fiber, total dietary",
       "unit": "G"
     },
-    "307": {
+    "1093": {
       "amount": 0,
       "name": "Sodium, Na",
       "unit": "MG"
     },
-    "539": {
+    "1235": {
       "amount": 0,
       "name": "Sugars, added",
       "unit": "G"
     },
-    "601": {
+    "1253": {
       "amount": 0,
       "name": "Cholesterol",
       "unit": "MG"
     },
-    "605": {
+    "1257": {
       "amount": 0,
       "name": "Fatty acids, total trans",
       "unit": "G"
     },
-    "606": {
+    "1258": {
       "amount": 13.33,
       "name": "Fatty acids, total saturated",
+      "unit": "G"
+    },
+    "2000": {
+      "amount": 0,
+      "name": "Sugars, total including NLEA",
       "unit": "G"
     },
     "seed": "refined sunflower & olive",
@@ -8905,84 +8905,84 @@
     "date": "2021-07-29"
   },
   "2084008": {
-    "203": {
+    "1003": {
       "amount": 0,
       "name": "Protein",
       "unit": "G"
     },
-    "204": {
+    "1004": {
       "amount": 93.33,
       "name": "Total lipid (fat)",
       "unit": "G"
     },
-    "205": {
+    "1005": {
       "amount": 0,
       "name": "Carbohydrate, by difference",
       "unit": "G"
     },
-    "208": {
+    "1008": {
       "amount": 800,
       "name": "Energy",
       "unit": "KCAL"
     },
-    "269": {
-      "amount": 0,
-      "name": "Sugars, total including NLEA",
-      "unit": "G"
-    },
-    "291": {
+    "1079": {
       "amount": 0,
       "name": "Fiber, total dietary",
       "unit": "G"
     },
-    "301": {
+    "1087": {
       "amount": 0,
       "name": "Calcium, Ca",
       "unit": "MG"
     },
-    "303": {
+    "1089": {
       "amount": 0,
       "name": "Iron, Fe",
       "unit": "MG"
     },
-    "307": {
+    "1093": {
       "amount": 0,
       "name": "Sodium, Na",
       "unit": "MG"
     },
-    "318": {
+    "1104": {
       "amount": 0,
       "name": "Vitamin A, IU",
       "unit": "IU"
     },
-    "401": {
+    "1162": {
       "amount": 0,
       "name": "Vitamin C, total ascorbic acid",
       "unit": "MG"
     },
-    "601": {
+    "1253": {
       "amount": 0,
       "name": "Cholesterol",
       "unit": "MG"
     },
-    "605": {
+    "1257": {
       "amount": 0,
       "name": "Fatty acids, total trans",
       "unit": "G"
     },
-    "606": {
+    "1258": {
       "amount": 16.67,
       "name": "Fatty acids, total saturated",
       "unit": "G"
     },
-    "645": {
+    "1292": {
       "amount": 73.33,
       "name": "Fatty acids, total monounsaturated",
       "unit": "G"
     },
-    "646": {
+    "1293": {
       "amount": 3.33,
       "name": "Fatty acids, total polyunsaturated",
+      "unit": "G"
+    },
+    "2000": {
+      "amount": 0,
+      "name": "Sugars, total including NLEA",
       "unit": "G"
     },
     "seed": "macadamia",
@@ -8990,52 +8990,52 @@
     "date": "2021-10-28"
   },
   "2116466": {
-    "203": {
+    "1003": {
       "amount": 0,
       "name": "Protein",
       "unit": "G"
     },
-    "204": {
+    "1004": {
       "amount": 100,
       "name": "Total lipid (fat)",
       "unit": "G"
     },
-    "205": {
+    "1005": {
       "amount": 0,
       "name": "Carbohydrate, by difference",
       "unit": "G"
     },
-    "208": {
+    "1008": {
       "amount": 923,
       "name": "Energy",
       "unit": "KCAL"
     },
-    "307": {
+    "1093": {
       "amount": 0,
       "name": "Sodium, Na",
       "unit": "MG"
     },
-    "601": {
+    "1253": {
       "amount": 77,
       "name": "Cholesterol",
       "unit": "MG"
     },
-    "605": {
+    "1257": {
       "amount": 0,
       "name": "Fatty acids, total trans",
       "unit": "G"
     },
-    "606": {
+    "1258": {
       "amount": 46.15,
       "name": "Fatty acids, total saturated",
       "unit": "G"
     },
-    "645": {
+    "1292": {
       "amount": 38.46,
       "name": "Fatty acids, total monounsaturated",
       "unit": "G"
     },
-    "646": {
+    "1293": {
       "amount": 11.54,
       "name": "Fatty acids, total polyunsaturated",
       "unit": "G"
@@ -9045,42 +9045,42 @@
     "date": "2021-10-28"
   },
   "2137792": {
-    "203": {
+    "1003": {
       "amount": 0,
       "name": "Protein",
       "unit": "G"
     },
-    "204": {
+    "1004": {
       "amount": 100,
       "name": "Total lipid (fat)",
       "unit": "G"
     },
-    "205": {
+    "1005": {
       "amount": 0,
       "name": "Carbohydrate, by difference",
       "unit": "G"
     },
-    "208": {
+    "1008": {
       "amount": 923,
       "name": "Energy",
       "unit": "KCAL"
     },
-    "307": {
+    "1093": {
       "amount": 0,
       "name": "Sodium, Na",
       "unit": "MG"
     },
-    "601": {
+    "1253": {
       "amount": 77,
       "name": "Cholesterol",
       "unit": "MG"
     },
-    "605": {
+    "1257": {
       "amount": 0,
       "name": "Fatty acids, total trans",
       "unit": "G"
     },
-    "606": {
+    "1258": {
       "amount": 38.46,
       "name": "Fatty acids, total saturated",
       "unit": "G"
@@ -9090,32 +9090,32 @@
     "date": "2021-10-28"
   },
   "2152470": {
-    "203": {
+    "1003": {
       "amount": 0,
       "name": "Protein",
       "unit": "G"
     },
-    "204": {
+    "1004": {
       "amount": 93.33,
       "name": "Total lipid (fat)",
       "unit": "G"
     },
-    "205": {
+    "1005": {
       "amount": 0,
       "name": "Carbohydrate, by difference",
       "unit": "G"
     },
-    "208": {
+    "1008": {
       "amount": 800,
       "name": "Energy",
       "unit": "KCAL"
     },
-    "307": {
+    "1093": {
       "amount": 0,
       "name": "Sodium, Na",
       "unit": "MG"
     },
-    "606": {
+    "1258": {
       "amount": 86.67,
       "name": "Fatty acids, total saturated",
       "unit": "G"
