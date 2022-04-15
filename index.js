@@ -89,12 +89,10 @@ let fix = () => {
       // log('nids', nids)
       for (let id in data) {
         for (let nid in data[id]) {
-          if (!isNaN(parseInt(nid)))
-            data[id][nid] = {
-              name: nids[nid].name,
-              unit: nids[nid].unit_name,
-              amount: parseFloat(data[id][nid]),
-            }
+          if (!isNaN(parseInt(nid))) {
+            data[id][nid].name = nids[nid].name
+            data[id][nid].unit = nids[nid].unit_name
+          }
         }
       }
 
@@ -114,7 +112,7 @@ let nup = () => {
       './db_full/food_nutrient.csv',
       (row) => {
         if (row.fdc_id in data) {
-          data[row.fdc_id][row.nutrient_id] = row.amount
+          data[row.fdc_id][row.nutrient_id] = { amount: parseFloat(row.amount) }
         }
         cur++
         if ((cur & 0xffff) == 0) process.stdout.write(`\r${cur / 21025860}`)
