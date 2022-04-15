@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('fs')
 const log = console.log
-const txt = fs.readFileSync('./1.html')
+const txt = fs.readFileSync('./ext_28/1.html')
 const async = require('async')
 const _ = require('underscore')
 
@@ -42,18 +42,18 @@ const pt = [
   { name: 'id', tag: 'h3', fill: 1 },
   { name: 'serving_size_g', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-serving_size' }, fill: 2 },
   { name: 'calories_per_serving_size', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-calories_per_serving_size' }, fill: 2 },
-  { name: 'total_fat_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-total_fat_' }, fill: 2 },
-  { name: 'saturated_fat_from_plants_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-saturated_fat_from_plants' }, fill: 2 },
-  { name: 'saturated_fat_from_animals_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-saturated_fat_from_animals' }, fill: 2 },
-  { name: 'monunsaturated_fat_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-monunsaturated_fat_' }, fill: 2 },
-  { name: 'polyunsaturated_fat_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-polyunsaturated_fat_' }, fill: 2 },
-  { name: 'trans_fats_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-trans_fats_' }, fill: 2 },
+  { name: 'Fat_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-total_fat_' }, fill: 2 },
+  { name: 'Plant_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-saturated_fat_from_plants' }, fill: 2 },
+  { name: 'Animal_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-saturated_fat_from_animals' }, fill: 2 },
+  { name: 'MUFA_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-monunsaturated_fat_' }, fill: 2 },
+  { name: 'PUFA_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-polyunsaturated_fat_' }, fill: 2 },
+  { name: 'Trans_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-trans_fats_' }, fill: 2 },
   { name: 'sodium_mg', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-sodium' }, fill: 2 },
   { name: 'protein_g', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-protein' }, fill: 2 },
   { name: 'carbohydrates_g', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-carbohydrates' }, fill: 2 },
   { name: 'smoke_point_C', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-smoke_point' }, fill: 2 },
-  { name: 'vitamin_e_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-vitamin_e' }, fill: 2 },
-  { name: 'vitamin_k_%', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-vitamin_k' }, fill: 2 },
+  { name: 'vitamin_e_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-vitamin_e' }, fill: 2 },
+  { name: 'vitamin_k_1', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-vitamin_k' }, fill: 2 },
   { name: 'best_suited_for', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-best_suited_for' }, fill: 2 },
   { name: 'oil_note3', tag: 'div', t: { class: 'pt-cv-custom-fields pt-cv-ctf-oil_note3' }, fill: 2 },
 ]
