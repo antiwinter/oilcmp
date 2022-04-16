@@ -8,6 +8,8 @@
 
 // now we extrace seed of interest from this db
 
+// a good chart: https://www.informationisbeautiful.net/visualizations/oil-well-every-cooking-oil-compared/
+
 const _ = require('underscore')
 const fs = require('fs')
 const csv = require('fast-csv')
@@ -77,6 +79,8 @@ let save = () => {
 let fix = () => {
   console.error('fixing up nutrients...')
   for (let id in data) {
+    // log('seed is', data[id].seed, seed[data[id].seed])
+    data[id].smoke = seed[data[id].seed].sp
     for (let nid in data[id]) {
       let x = parseInt(nid)
       if (isNaN(x)) continue
@@ -117,7 +121,19 @@ let fix = () => {
         }
       }
 
-      nids = _.filter(nids, (x) => x.c)
+      nids = _.filter(nids, (x) => {
+        // pick headers of interest
+        let pick = [
+          1008,
+          'total',
+          'fatty acids',
+          'PUFA 18:2',
+          'PUFA 18:3',
+          'Vitamin E',
+          'Cholesterol ',
+        ]
+        return x.c
+      })
       nids.sort((a, b) => 0.5 - (a.name < b.name))
 
       fs.writeFileSync('./nids.json', JSON.stringify(nids, null, 2))
@@ -125,7 +141,9 @@ let fix = () => {
       // final
       let header = [
         'Oil',
-        ...nids.map((x) => `${x.name} (${x.unit_name})`.replace(/,/g, '.')),
+        ...nids.map((x) =>
+          `${x.name} (${x.unit_name}) - ${x.id}`.replace(/,/g, '.')
+        ),
       ]
       log(header.join(','))
 
@@ -136,7 +154,7 @@ let fix = () => {
             .map(
               (k, i) =>
                 (!i
-                  ? data[id][k].replace(/,/g, '.')
+                  ? data[id][k].replace(/,|Oil. /g, '')
                   : data[id][k] && data[id][k].amount) || 0
             )
             .join(',')
@@ -149,10 +167,10 @@ let fix = () => {
 }
 
 let nup = () => {
-  console.error('setting up nutrients...')
   if (JSON.stringify(data).length > 20000) {
     fix()
   } else {
+    console.error('setting up nutrients...', JSON.stringify(data).length)
     let cur = 0
     csv_go(
       './db_full/food_nutrient.csv',
@@ -172,7 +190,6 @@ let nup = () => {
   }
 }
 
-console.error('fetching entry...')
 let wl = {
   foundation_food: 1,
   sr_legacy_food: 1,
@@ -183,6 +200,7 @@ try {
   data = require('./data.json')
   nup()
 } catch (err) {
+  console.error('fetching entry...')
   csv_go(
     './db_full/food.csv',
     (row) => {
