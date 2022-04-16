@@ -111,6 +111,7 @@ let fix = () => {
           }
         }
       }
+      save()
 
       // clean nids
       for (let id in data) {
@@ -120,12 +121,14 @@ let fix = () => {
           }
         }
       }
+      fs.writeFileSync('./nids.json', JSON.stringify(nids, null, 2))
 
+      // gen csv
       let pick = [
         1008,
-        'Total',
+        '^Total',
         'Fatty a.+trans$',
-        'Fatty a.+sat',
+        'Fatty a.+ sat',
         'Fatty a.+mono.+ed$',
         'Fatty a.+poly.+ed$',
         'PUFA 18:2',
@@ -133,51 +136,36 @@ let fix = () => {
         'Vitamin E',
         'Cholesterol ',
       ]
-      let _n = []
 
-      pick.forEach((p) => {
-        let z = _.filter(
-          nids,
-          (x) =>
-            ((typeof p == 'number' && p == parseInt(x.id)) ||
-              x.name.match(new RegExp(p, 'i'))) &&
-            x.c
-        )
-        _n = _n.concat(z)
-      })
-      nids = _n
+      let hdr = ['', 'Smoke point']
+      log(hdr.concat(pick.map((a) => (a == 1008 ? 'Energy' : a))).join(','))
 
-      // nids.sort((a, b) => 0.5 - (a.name < b.name))
-
-      fs.writeFileSync('./nids.json', JSON.stringify(nids, null, 2))
-
-      // final
-      let header = [
-        '',
-        'Smoke point',
-        ...nids.map((x) =>
-          `${x.id} - ${x.name} (${x.unit_name})`.replace(/,/g, '.')
-        ),
-      ]
-      log(header.join(','))
-
-      let seq = ['desc', 'smoke', ...nids.map((x) => x.id)]
       for (let id in data) {
+        let out = [data[id].desc.replace(/,|Oil, /g, ''), data[id].smoke]
         log(
-          seq
-            .map(
-              (k, i) =>
-                (!i
-                  ? data[id][k].replace(/,|Oil. /g, '')
-                  : i == 1
-                  ? data[id][k]
-                  : data[id][k] && data[id][k].amount) || 0
+          out
+            .concat(
+              pick.map((p) => {
+                let v = 0
+                _.filter(
+                  nids,
+                  (x) =>
+                    ((typeof p == 'number' && p == parseInt(x.id)) ||
+                      x.name.match(new RegExp(p, 'i'))) &&
+                    x.c
+                ).forEach((n) => {
+                  // log(data[id].desc, n)
+                  v = Math.max(
+                    v,
+                    (data[id][n.id] && data[id][n.id].amount) || 0
+                  )
+                })
+                return v
+              })
             )
             .join(',')
         )
       }
-      save()
-      // log('done')
     }
   )
 }
