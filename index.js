@@ -4,9 +4,9 @@
 
 // now we extrace seed of interest from this db
 
+const _ = require('underscore')
 const fs = require('fs')
 const csv = require('fast-csv')
-const { Z_FIXED } = require('zlib')
 const log = console.log
 const csv_go = (f, cb, done) => {
   fs.createReadStream(f)
@@ -55,6 +55,7 @@ let seed = {
 }
 let data = {}
 let nids = {}
+let sdin = {}
 
 // make regexp
 let fat_begin
@@ -65,14 +66,17 @@ for (let k in seed) {
 
 let save = () => {
   fs.writeFileSync('./data.json', JSON.stringify(data, null, 2), 'utf-8')
-  log('write to file')
+  // log('write to file')
 }
 
 let fix = () => {
-  log('fixing up nutrients...')
+  console.error('fixing up nutrients...')
   for (let id in data) {
     for (let nid in data[id]) {
-      if (!isNaN(parseInt(nid))) nids[nid] = 1
+      let x = parseInt(nid)
+      if (isNaN(x)) continue
+      else if (x < 1000) sdin[x] = 1
+      else nids[x] = 1
     }
   }
   // log(nids)
@@ -80,30 +84,64 @@ let fix = () => {
   csv_go(
     './db_full/nutrient.csv',
     (row) => {
-      if (row.id in nids || row.nutrient_nbr in nids) {
-        nids[row.id] = row
-        nids[row.nutrient_nbr] = row
+      if (row.id in nids || row.nutrient_nbr in sdin) {
+        nids[row.id] = { ...row, c: 0 }
+        sdin[row.nutrient_nbr] = row.id
       }
     },
     (c) => {
       // log('nids', nids)
+      // change low_id to high_id
       for (let id in data) {
         for (let nid in data[id]) {
           if (!isNaN(parseInt(nid))) {
-            data[id][nid].name = nids[nid].name
-            data[id][nid].unit = nids[nid].unit_name
+            if (nid in sdin) {
+              data[id][sdin[nid]] = data[id][nid]
+              delete data[id][nid]
+            }
           }
         }
       }
 
+      // clean nids
+      for (let id in data) {
+        for (let nid in data[id]) {
+          if (!isNaN(parseInt(nid))) {
+            if (data[id][nid].amount > 0) nids[nid].c++
+          }
+        }
+      }
+
+      nids = _.filter(nids, (x) => x.c)
+
+      // final
+      let header = [
+        'Oil',
+        ...nids.map((x) => `${x.name} (${x.unit_name})`.replace(/,/g, '.')),
+      ]
+      log(header.join(','))
+
+      let seq = ['desc', ...nids.map((x) => x.id)]
+      for (let id in data) {
+        log(
+          seq
+            .map(
+              (k, i) =>
+                (!i
+                  ? data[id][k].replace(/,/g, '.')
+                  : data[id][k] && data[id][k].amount) || 0
+            )
+            .join(',')
+        )
+      }
       save()
-      log('done')
+      // log('done')
     }
   )
 }
 
 let nup = () => {
-  log('setting up nutrients...')
+  console.error('setting up nutrients...')
   if (JSON.stringify(data).length > 20000) {
     fix()
   } else {
@@ -126,7 +164,7 @@ let nup = () => {
   }
 }
 
-log('fetching entry...')
+console.error('fetching entry...')
 let wl = {
   foundation_food: 1,
   sr_legacy_food: 1,
