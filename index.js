@@ -1,6 +1,10 @@
 // all seed from https://fdc.nal.usda.gov/download-seedsets.html
 // Full Download of All seed Types -
 //   direct package link: https://fdc.nal.usda.gov/fdc-seedsets/Foodseed_Central_csv_2021-10-28.zip
+//
+// this db does not contain smoke point data, so the sp data is found from here:
+// https://www.masterclass.com/articles/cooking-oils-and-smoke-points-what-to-know-and-how-to-choose#why-is-oil-smoke-point-important
+// https://en.wikipedia.org/wiki/Template:Smoke_point_of_cooking_oils
 
 // now we extrace seed of interest from this db
 
@@ -17,41 +21,42 @@ const csv_go = (f, cb, done) => {
 }
 
 let seed = {
-  palm: {},
-  avocado: {},
-  coconut: {},
-  'virgin coconut': { id: '2152470' },
-  sunflower: {},
-  'sunflower, high': {},
-  'olive, extra virgin': {},
-  'olive, extra light': {},
-  'refined sunflower & olive': { id: '1991749' },
+  palm: { sp: 235 },
+  avocado: { sp: 270 },
+  coconut: { sp: 204 },
+  'virgin coconut': { id: '2152470', sp: 177 },
+  sunflower: { sp: 232 },
+  'sunflower, high': { sp: 232 },
+  'olive, extra virgin': { sp: 163 },
+  'olive, extra light': { sp: 200 },
+  'refined sunflower & olive': { id: '1991749', sp: 240 },
 
   // seed
-  corn: {},
-  soybean: {},
-  rice: {},
-  canola: {},
+  corn: { sp: 232 },
+  soybean: { sp: 234 },
+  rice: { sp: 240 },
+  canola: { sp: 204 },
   // rapeseed: {},
-  peanut: {},
-  sesame: {},
-  cottonseed: {},
-  grapeseed: {},
+  peanut: { sp: 232 },
+  sesame: { sp: 177 },
+  cottonseed: { sp: 220 },
+  grapeseed: { sp: 216 },
   teaseed: {},
-  'flaxseed, cold': {},
-  safflower: {},
+  'flaxseed, cold': { sp: 107 },
+  safflower: { sp: 254 },
 
   // nut
-  walnut: {},
-  almond: {},
-  apricot: {},
-  macadamia: { id: '2084008' },
+  walnut: { sp: 232 },
+  almond: { sp: 221 },
+  // apricot: {sp: 0 },
+  hazelnut: { sp: 254 },
+  macadamia: { id: '2084008', sp: 210 },
 
   // fat
-  ghee: {},
-  'fat, beef tallow': {},
-  lard: { id: '2116466' },
-  'refined lard': { id: '2137792' },
+  ghee: { sp: 232 }, // clarified butter
+  'fat, beef tallow': { sp: 204 },
+  lard: { id: '2116466', sp: 188 },
+  // 'refined lard': { id: '2137792' },
 }
 let data = {}
 let nids = {}
@@ -113,6 +118,9 @@ let fix = () => {
       }
 
       nids = _.filter(nids, (x) => x.c)
+      nids.sort((a, b) => 0.5 - (a.name < b.name))
+
+      fs.writeFileSync('./nids.json', JSON.stringify(nids, null, 2))
 
       // final
       let header = [
