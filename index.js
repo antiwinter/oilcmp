@@ -51,7 +51,7 @@ let seed = {
   walnut: { sp: 232 },
   almond: { sp: 221 },
   // apricot: {sp: 0 },
-  hazelnut: { sp: 254 },
+  hazelnut: { sp: 221 },
   macadamia: { id: '2084008', sp: 210 },
 
   // fat
