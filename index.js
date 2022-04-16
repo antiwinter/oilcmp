@@ -121,33 +121,47 @@ let fix = () => {
         }
       }
 
-      nids = _.filter(nids, (x) => {
-        // pick headers of interest
-        let pick = [
-          1008,
-          'total',
-          'fatty acids',
-          'PUFA 18:2',
-          'PUFA 18:3',
-          'Vitamin E',
-          'Cholesterol ',
-        ]
-        return x.c
+      let pick = [
+        1008,
+        'Total',
+        'Fatty a.+trans$',
+        'Fatty a.+sat',
+        'Fatty a.+mono.+ed$',
+        'Fatty a.+poly.+ed$',
+        'PUFA 18:2',
+        'PUFA 18:3',
+        'Vitamin E',
+        'Cholesterol ',
+      ]
+      let _n = []
+
+      pick.forEach((p) => {
+        let z = _.filter(
+          nids,
+          (x) =>
+            ((typeof p == 'number' && p == parseInt(x.id)) ||
+              x.name.match(new RegExp(p, 'i'))) &&
+            x.c
+        )
+        _n = _n.concat(z)
       })
-      nids.sort((a, b) => 0.5 - (a.name < b.name))
+      nids = _n
+
+      // nids.sort((a, b) => 0.5 - (a.name < b.name))
 
       fs.writeFileSync('./nids.json', JSON.stringify(nids, null, 2))
 
       // final
       let header = [
-        'Oil',
+        '',
+        'Smoke point',
         ...nids.map((x) =>
-          `${x.name} (${x.unit_name}) - ${x.id}`.replace(/,/g, '.')
+          `${x.id} - ${x.name} (${x.unit_name})`.replace(/,/g, '.')
         ),
       ]
       log(header.join(','))
 
-      let seq = ['desc', ...nids.map((x) => x.id)]
+      let seq = ['desc', 'smoke', ...nids.map((x) => x.id)]
       for (let id in data) {
         log(
           seq
@@ -155,6 +169,8 @@ let fix = () => {
               (k, i) =>
                 (!i
                   ? data[id][k].replace(/,|Oil. /g, '')
+                  : i == 1
+                  ? data[id][k]
                   : data[id][k] && data[id][k].amount) || 0
             )
             .join(',')
